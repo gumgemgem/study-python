@@ -1,4 +1,33 @@
+<details>
+  <summary>目录</summary>
+  
+  - [len()](#len)
+  - [list()](#list)
+  - [range()](#range)
+  
+</details>  
+
+# len()
+- `len()` 用于返回对象的长度或者项目个数  
+
+- 语法：
+  `len(s)`  
+
+- 实例：
+  ```
+  In [1]: str = 'runoob'
+          len(str)
+          
+  Out [1]: 6
+
+  In [2]: l = [1, 2, 3, 4, 5]
+          len(l)
+          
+  Out [2]: 5
+  ```
+
 # list()
+
 - `list()` 用于将元组、字符串等可迭代对象转化为列表  
 
 - 语法：
@@ -18,6 +47,26 @@
           print(list2)
           
   Out [2]: ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
+  ```
+
+# max()
+
+- `max()` 用于返回对象的长度或者项目个数  
+
+- 语法：
+  `len(s)`  
+
+- 实例：
+  ```
+  In [1]: str = 'runoob'
+          len(str)
+          
+  Out [1]: 6
+
+  In [2]: l = [1, 2, 3, 4, 5]
+          len(l)
+          
+  Out [2]: 5
   ```
 
 # range()  
