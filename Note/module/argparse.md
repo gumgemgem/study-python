@@ -28,7 +28,8 @@
   ```
   常用参数说明：  
   - name or flags  
-    一个命名（即位置参数）或者一个选项字符串的**列表**，如：`foo`或者`-f、--foo`，**不可省略**  
+    一个命名（即位置参数）或者一个选项字符串（即可选参数）的**列表**，如：`foo`或者`-f、--foo`，**不可省略**  
+    对于可选参数而言，首选第一个出现的长参数名（--开头），如果没有长参数，则选择第一个出现的的短参数名（-开头）  
   
 - 实例
   - name or flags
@@ -39,4 +40,7 @@
     parser = add_argument('-f', '--foo')  # 创建选项，此时命令行输入参数时可以选择性进行参数传递
     parser.parse_args(['BAR'])  # 输入正确，bar = 'BAR'，foo = None
     parser.parse_args(['BAR', '--foo', 'FOO'])  # 输入正确，bar = 'BAR'，foo = 'FOO'
+    parser.parse_args(['BAR', '-f', 'F', '--foo', 'FOO'])  # 输入正确，bar = 'BAR'，foo = 'FOO'
+    parser.parse_args(['BAR', '-f', 'F'])  # 输入正确，bar = 'BAR'，foo = 'F'
+    parser.parse_args(['-f', 'F'])  # 输入错误，error: the following arguments are required: bar
     ```    
