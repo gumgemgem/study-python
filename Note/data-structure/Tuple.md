@@ -56,7 +56,7 @@ Introduction and syntax of Tuple
   Out [3]: ('foo', [1, 2, 3], True)
   ```  
   
-- 切片的方式截取元组中的元素`[start : end : step]` 其中 start 和 end 为左闭右开即 `[start, end)`  
+- **切片**的方式截取元组中的元素`[start : end : step]` 其中 start 和 end 为左闭右开即 `[start, end)`  
   - 步长 step 取正数，表示**正序截取**  
     默认值：start 默认值为 0，end 默认值为序列的长度，step 默认值为 1  
     规则：start 必须在 end 的左边，从左至右按步长进行截取
