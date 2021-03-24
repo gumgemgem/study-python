@@ -137,7 +137,7 @@ Introduction and syntax of List
 [见「元组的运算符」](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)  
   
 ## 7、列表的内置函数
-[见「元组的内置函数」](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)
+[`len()、max()、min()、list()、enumerate()、sorted()、zip()、reversed()`](https://github.com/gumgemgem/study-python/blob/main/Note/function/build-in_function.md)
 
 ## 8、列表的拆包与打包
 [见「序列的拆包和打包」](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)
