@@ -1,14 +1,14 @@
 # 元组
 Introduction and syntax of Tuple  
 
-## 1、写在前面  
+## 写在前面  
 以下以`In []`和`Out []`开始的代码均是在 jupyter-notebook（即 ipython） 的环境下运行的，因此可以直接输出变量  
 其他格式的代码是在 pycharm（非 ipython） 的环境下运行的，必须用 print 函数进行输出
 
-## 2、定义  
+## 1、定义  
 固定长度，不可改变的 python 序列对象  
 
-## 3、初始化  
+## 2、初始化  
 - 用逗号分隔（加不加括号都行，但建议是必须的）  
   ```
   In [1]: tup1 = 4，5，6
@@ -43,7 +43,7 @@ Introduction and syntax of Tuple
   tup = ('hello',)
   ```
 
-## 4、索引和截取  
+## 3、索引和截取  
 - 用方括号 `[]` 访问元素，序列从 0 开始  
 
 - 元组中存储的对象可以是可变的也可以是不可变的  
@@ -86,14 +86,14 @@ Introduction and syntax of Tuple
     Out [4]: tup[:0:-1]: (5, 4, 3, 2)
     ```  
     
-## 5、删除元组  
+## 4、删除元组  
   元组中的元素不可以删除，但是整个元组可以用 `del` 进行删除  
   ```
   tup = (4, 5, 6)
   del tup
   ```
   
-## 6、元组运算符  
+## 5、元组运算符  
   - `+` 加号运算符将元组串联起来  
   - `*` 乘号运算符将元组复制串联起来  
     ```
@@ -105,10 +105,10 @@ Introduction and syntax of Tuple
   - `in/not in` 判断元素是否存在  
   - `for` 循环进行迭代  
 
-## 7、元组的内置函数  
-  [`len()、max()、min()、tuple()`](https://github.com/gumgemgem/study-python/blob/main/Note/function/build-in_function.md)  
+## 6、元组的内置函数  
+  [`len()、max()、min()、tuple()、enumerate()、sorted()、zip()、reversed()`](https://github.com/gumgemgem/study-python/blob/main/Note/function/build-in_function.md)  
   
-## 8、序列的打包与拆包
+## 7、序列的打包与拆包
 - 序列的打包
   定义序列给序列赋值本质就是将各元素打包进序列，即序列打包  
 
@@ -152,7 +152,7 @@ Introduction and syntax of Tuple
     a = 7, b = 8, c = 9
     ```
   
-## 9、count 方法
+## 8、count 方法
   `count()`可以统计某个值在序列（元组和列表）中出现的频率
   ```
   tup = (1, 1, 1, 2)
