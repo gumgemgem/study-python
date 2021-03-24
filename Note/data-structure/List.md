@@ -22,10 +22,10 @@ Introduction and syntax of List
   ```
 
 ## 3、索引和切片
-[见元组的索引和截取](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)
+[见「元组的索引和截取」](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)
 
 ## 4、修改、添加和删除
-- 修改
+- 修改  
   需要修改列表中的指定元素，直接对该处的元素进行重新赋值
   
 - 添加
@@ -134,5 +134,20 @@ Introduction and syntax of List
   ```
 
 ## 6、列表的运算符
-[见元组的运算符](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)  
+[见「元组的运算符」](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)  
   
+## 7、列表的内置函数
+[见「元组的内置函数」](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)
+
+## 8、列表的拆包与打包
+[见「序列的拆包和打包」](https://github.com/gumgemgem/study-python/blob/main/Note/data-structure/Tuple.md)
+
+## 9、count 方法 
+`count()`可以统计某个值在序列（元组和列表）中出现的频率  
+```
+l = [1, 1, 1, 2]
+l.count(1)
+
+# 输出：
+3
+``` 
