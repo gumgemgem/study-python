@@ -1,20 +1,63 @@
 <details>
   <summary>目录</summary>
   
+  - [enumerate()](#enumerate)
   - [len()](#len)
   - [list()](#list)
   - [max()](#max)
   - [range()](#range)
+  - [sorted()](#sorted)
   
 </details>  
 
-# len()
-- `len()` 用于返回对象的长度或者项目个数  
+# enumerate()
+- 说明  
+  将一个可遍历的数据对象（如列表、元组或字符串）组合为一个索引序列，同时列出数据和数据下标`(i, value)元组序列`，一般用在`for`循环当中  
 
-- 语法：
+- 语法  
+  ```
+  enumerate(sequence, [start=0])
+  ```
+  
+  参数说明：  
+  `sequence`：一个序列、迭代器或其他支持迭代的对象  
+  `start`：返回时下标起始位置  
+  
+  返回值：  
+  enumerate（枚举）**对象**  
+  
+- 实例
+  - 不在`for`循环中使用
+    ```
+    seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+    print(list(enumerate(seasons)))
+    print(list(enumerate(seasons, start=1)))
+
+    # 输出：
+    [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
+    [(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]
+    ```  
+  
+  - 在`for`循环中使用  
+    ```
+    seq = ['one', 'two', 'three']
+    for i, element in enumerate(seq, 1):
+        print(i, element)
+        
+    # 输出：
+    1 one
+    2 two
+    3 three
+    ```
+
+# len()
+- 说明  
+  用于返回对象的长度或者项目个数  
+
+- 语法
   `len(s)`  
 
-- 实例：
+- 实例
   ```
   In [1]: str = 'runoob'
           len(str)
@@ -29,13 +72,15 @@
 
 # list()
 
-- `list()` 用于将元组、字符串等可迭代对象转化为列表  
+- 说明  
+  用于将元组、字符串等可迭代对象转化为列表  
 
-- 语法：
+- 语法将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中
   `list(seq)`  
+  
   返回值：返回列表  
 
-- 实例：
+- 实例
   ```
   In [1]: tuple = (1, 2, 3)
           list1 = list(tuple按索引顺序，逐一对比各序列的当前索引位的 “值”，直到遇见最大值立即停止对比，并返回最大值所在的序列（也就是说，多序列入参，返回值依旧是一个序列，而不是数值）)
@@ -52,18 +97,19 @@
 
 # max()
 
-- `max()` 用于返回给定参数的最大值，参数可以是序列  
+- 说明  
+  用于返回给定参数的最大值，参数可以是序列  
 
-- 语法：
-  `max(x, y, z, ...)`  
+- 语法
+  ```
+  max(x, y, z, ...)
+  ```
+  
   参数说明：  
   - 入参类型不能混入，要么全是 Number(int/float/complex/bool) 类型，要么全是序列
   - 当入参类型为序列时：单序列入参，返回序列中最大的数值；多序列入参，按索引顺序，逐一对比各序列当前索引位的“值”，直到遇见最大值立即停止对比，并返回最大值所在的**序列**  
 
-- 实例：
-  
-
-- 实例：
+- 实例
   ```
   In [1]: str = 'runoob'
           len(str)
@@ -78,22 +124,23 @@
 
 # range()  
 
-- 说明：  
+- 说明  
   - python3 中 `range()` 函数返回的是一个**可迭代对象**，而非一个列表类型；可以用 `list()` 函数将可迭代的对象转化为列表  
   - python2 中 `range()` 函数返回的是一个**列表**  
   
-- 语法：  
+- 语法  
   ```
   range(end)
   range(start, end[, step])
   ```
+  
   参数说明：  
   - start 可省略，默认值为 0  
   - end 不可省略，计数规则是左闭右开，即 \[start, end)  
   - step 可以省略，默认值为 1  
   - 取数规则是从 start 开始依次加上步长值，不论步长值是正数或负数（与列表、元组等可迭代对象的[逆序截取](https://github.com/gumgemgem/study-python/edit/main/Note/data-structure/Tuple.md)的规则不同）
 
-- 实例：
+- 实例
   ```
   In [1]: for i in range(5):
             print(i, end = ' ')
@@ -110,8 +157,33 @@
 
   Out [3]： -2 -1 0 1
 
-  In [4]: for i in range(4，-4 start 开始依次加上步长值，-2):
+  In [4]: for i in range(4，-4，-2):
             print(i, end = ' ')
 
   Out [4]： 4 2 0 -2
+  ```
+
+# sorted()
+- 说明  
+  `sorted()函数`对所有可迭代的对象可以进行排序操作  
+  与`sort()方法`的区别：  
+  - `sort()`是只应用在`List`上的方法；`sorted()`是可以对所有可迭代的对象进行排序操作的函数
+  - `sort()`返回的是对已经存在的列表进行操作；`sorted()`返回的是一个新的可迭代对象，而不是在原来序列的基础上进行的操作
+  
+- 语法  
+  ```
+  sorted(iterable, key=None, reverse=False)
+  ```
+  
+  参数说明：  
+  - `iterable`：可迭代的对象  
+  - `key`：主要是用来进行比较的元素  
+  - `reverse`：排序规则，`reverse = True`为降序，`reverse = False`为升序（**默认**）  
+  
+  返回值：  
+  返回重新排序的可迭代对象
+  
+- 实例  
+  ```
+  
   ```
