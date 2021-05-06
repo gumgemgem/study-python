@@ -5,6 +5,7 @@
   - [len()](#len)
   - [list()](#list)
   - [max()](#max)
+  - [min()](#min)
   - [range()](#range)
   - [sorted()](#sorted)
   
@@ -111,15 +112,38 @@
 
 - 实例
   ```
-  In [1]: str = 'runoob'
-          len(str)
+  In [1]: max(-1, -0.5, 0)
           
-  Out [1]: 6
+  Out [1]: 0
 
-  In [2]: l = [1, 2, 3, 4, 5]
-          len(l)
+  In [2]: max([2, 4], [1, 5], [3, 1], [2, 5], [0, 7])
           
-  Out [2]: 5
+  Out [2]: [3, 1]
+  ```
+  
+# min()
+
+- 说明  
+  用于返回给定参数的最小值，参数可以是序列  
+
+- 语法  
+  ```
+  min(x, y, z, ...)
+  ```
+  
+  参数说明：  
+  - 入参类型不能混入，要么全是 Number(int/float/complex/bool) 类型，要么全是序列
+  - 当入参类型为序列时：单序列入参，返回序列中最小的数值；多序列入参，按索引顺序，逐一对比各序列当前索引位的“值”，直到遇见最小值立即停止对比，并返回最小值所在的**序列**
+  
+- 实例
+  ```
+  In [1]: min(-1, -0.5, 0)
+          
+  Out [1]: -1
+
+  In [2]: min([2, 4], [1, 5], [3, 1], [2, 5], [0, 7])
+          
+  Out [2]: [0, 7]
   ```
 
 # range()  
@@ -177,7 +201,7 @@
   
   参数说明：  
   - `iterable`：可迭代的对象  
-  - `key`：主要是用来进行比较的元素  
+  - `key`：主要是用来进行比较的元素；只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序  
   - `reverse`：排序规则，`reverse = True`为降序，`reverse = False`为升序（**默认**）  
   
   返回值：  
@@ -185,5 +209,16 @@
   
 - 实例  
   ```
+  In [1]: example_list = [5, 0, 6, 1, 2, 7, 3, 4]
+          result_list = sorted(example_list, key=lambda x: x*-1)
+          print(result_list)
+          
+  Out [1]: [7, 6, 5, 4, 3, 2, 1, 0]
   
+  In [2]: # 先按照成绩进行降序排列，相同成绩的按照名字进行升序排序
+          d1 = [{'name': 'alice', 'score': 38}, {'name': 'bob', 'score': 18}, {'name': 'darl', 'score': 28}, {'name': 'christ', 'score': 28}]
+          l = sorted(d1, key=lambda x: (-x['score'], x['name']))
+          print(l)
+          
+  Out [2]: [{'name': 'alice', 'score': 38}, {'name': 'christ', 'score': 28}, {'name': 'darl', 'score': 28}, {'name': 'bob', 'score': 18}]
   ```
