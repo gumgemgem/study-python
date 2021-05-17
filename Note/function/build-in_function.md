@@ -7,7 +7,9 @@
   - [max()](#max)
   - [min()](#min)
   - [range()](#range)
+  - [reversed()](#reversed)
   - [sorted()](#sorted)
+  - [zip()](#zip)
   
 </details>  
 
@@ -186,6 +188,39 @@
 
   Out [4]： 4 2 0 -2
   ```
+# reversed()
+
+- 描述
+  `reversed()`函数返回一个反转的迭代器
+
+- 语法
+  ```
+  reversed(seq)
+  ```
+  
+  参数说明：  
+  `seq`：要转换的序列，可以是 tuple、string、list、或 range  
+
+  返回值：  
+  返回一个反转的迭代器，打印输出必须通过实体化（即相应的函数或 for 循环）  
+  
+- 实例
+  ```
+  # 输入
+  seqString = 'hello'
+  print(list(reversed(seqString)))
+
+  seqRange = range(5, 9)
+  print(list(reversed(seqRange)))
+
+  seqList = [1, 2, 3, 4, 5]
+  print(list(reversed(seqList)))
+  
+  # 输出
+  ['o', 'l', 'l', 'e', 'h']
+  [8, 7, 6, 5]
+  [5, 4, 3, 2, 1]
+  ```
 
 # sorted()
 
@@ -236,8 +271,40 @@
   
   注意：  
   - 当所输入的可迭代对象中最短的一个被耗尽时，迭代其将停止迭代
-  - `python2` 中 `zip()` 返回的是一个列表； `python3` 中 `zip()` 返回的是一个对象，可以通过函数转换来输出，其中输出对象中第 i 个元组包含来自每个参数序列或可迭代对象的第 i 个元素
+  - `python2` 中 `zip()` 返回的是一个列表； `python3` 中 `zip()` 返回的是一个对象，可以通过实体化（函数：list()、tuple()、set()等 或 for 循环）转换来输出，其中输出对象中第 i 个元组包含来自每个参数序列或可迭代对象的第 i 个元素
   - `zip` 和 `*` 结合可以用来拆解一个列表
+ 
+- `zip()`的返回值
+  `zip()`返回的是一个`zip`对象，该`zip`对象本质上一个**迭代器**，迭代器的特点是**只能前进不能后退**  
+  当第一次访问迭代器时，迭代器内部的指针已经指向了内部的最后一个元组；当第二次访问迭代器时，指针不会被重置，迭代器只能前进不能后退，因此此时的迭代器已经没有元组可以返回了，打印输出即为空  
+  ```
+  In[1]: a = [1, 2, 3]
+         b = [4, 5, 6]
+         zipped1 = zip(a, b)
+         print(list(zipped1))
+         print(list(zipped1))
+         
+  Out[1]: [(1, 4), (2, 5), (3, 6)]
+          []
+          
+  In[2]: a = [1, 2, 3]
+         b = [4, 5, 6]
+         zipped1 = zip(a, b)
+         print(list(zipped1))
+         a1, b1 = zip(*zipped1)   # 此时迭代器为空
+         print(list(a1) == a and list(b1) == b)
+         
+  Out[2]: [(1, 4), (2, 5), (3, 6)]
+          ValueError: not enough values to unpack (expected 2, got 0)
+          
+  In[3]: a = [1, 2, 3]
+         b = [4, 5, 6]
+         zipped1 = zip(a, b)
+         a1, b1 = zip(*zipped1)   # a1, b1 = zip(*list(zipped1)) 也可以
+         print(list(a1) == a and list(b1) == b)
+         
+  Out[3]: True
+  ```
 
 - 实例
   ```
@@ -249,5 +316,9 @@
          print(zipped1)
          print(zipped2)
          a1, b1 = zip(*zip(a, b))
-         print(a1 == a and b1 == b)
+         print(list(a1) == a and list(b1) == b)
+  
+  Out[1]: [(1, 4), (2, 5), (3, 6)]
+          [(1, 4), (2, 5), (3, 7)]
+          True
   ```
