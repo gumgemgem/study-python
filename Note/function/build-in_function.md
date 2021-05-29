@@ -7,8 +7,10 @@
   - [max()](#max)
   - [min()](#min)
   - [range()](#range)
+  - [repr()](#repr)
   - [reversed()](#reversed)
   - [sorted()](#sorted)
+  - [str()](#str)
   - [zip()](#zip)
   
 </details>  
@@ -188,6 +190,20 @@
 
   Out [4]： 4 2 0 -2
   ```
+  
+# repr()
+
+- 描述  
+  将对象转化为供解释器读取的字符串形式
+  
+- 语法  
+  ```
+  repr(object)
+  ```
+
+- 实例  
+  详见[str()](#str)
+  
 # reversed()
 
 - 描述
@@ -257,6 +273,72 @@
           print(l)
           
   Out [2]: [{'name': 'alice', 'score': 38}, {'name': 'christ', 'score': 28}, {'name': 'darl', 'score': 28}, {'name': 'bob', 'score': 18}]
+  ```
+
+# str()
+
+- 描述  
+  将对象转化为适于人阅读的字符串的形式  
+
+- 语法  
+  ```
+  class str(object='')
+  ```
+
+- str() 和 repr() 的异同  
+  `str()`: 将对象转化为适于人阅读的字符串形式  
+  `repr()`: 将对象转化为适于解释器读取的字符串形式  
+  
+  - 相同  
+    除字符串类型外，`str()`和`repr()`的转换没有区别  
+  
+  - 区别  
+    主要体现在将字符串再转化字符串上：`repr()`会在字符串的外层再加一层引号；`str()`不会在字符串的外层再加一层引号  
+    ```
+    >>> repr('abc')
+    "'abc'"
+    >>> print(repr('abc'))   # print 调用的是 repr()，不会在字符串外层再加一层引号
+    'abc'
+    >>> repr('abc') == 'abc'
+    False
+    >>> len(repr('abc'))
+    5
+    
+    >>> str('abc')
+    'abc'
+    >>> print(str('abc'))   # print 调用的是 repr()，不会在字符串外层再加一层引号
+    abc
+    >>> str('abc') == 'abc'
+    True
+    >>> len(str('abc'))
+    3 
+    ```
+    
+  - 输出的调用方式  
+    直接输出（如命令行的输出）调用的是`repr()`，用 print 进行输出调用的是`str()`  
+    ```
+    >>> s = 'abc'
+    >>> s
+    'abc'
+    >>> print(s)
+    abc
+    ```
+
+- 实例
+  ```
+  >>> s = 'Python'
+  >>> str(s)
+  'Python'
+  >>> type(str(a))
+  <class 'str'>
+  >>> print(str(s))   # 用 print 进行输出时会去掉引号，但仍然是 str 类型
+  Python
+  
+  >>> d = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}
+  >>> str(d)
+  "{1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}"
+  >>> print(str(d))   # 用 print 进行输出时会去掉引号，但仍然是 str 类型
+  {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}   
   ```
 
 # zip()
