@@ -13,9 +13,9 @@
   
 - 迭代器对象（Iterator）  
   - 迭代器对象内置有`iter()`和`next()`方法  
-  - 执行迭代器对象`.iter()`方法得到的依然是迭代器本身  
-  - 执行迭代器对象`.next()`方法计算出迭代器中的下一个值  
-  - 迭代器对象可以使用`for`语句进行遍历，也可以使用`next()`函数进行遍历  
+  - 执行迭代器对象`iter()`或迭代器`.__iter__()`方法得到的依然是迭代器本身  
+  - 执行迭代器对象`next()`或迭代器`.__next__()`方法计算出迭代器中的下一个值  
+  - 迭代器对象可以使用`for`语句进行遍历，也可以使用`next()`函数进行遍历，也可以用迭代器`.__next__()`进行遍历  
   
 - 区别与联系  
   迭代器对象一定是可迭代对象，但可迭代对象不一定是迭代器对象  
@@ -45,9 +45,9 @@
   ```
   
 ## 创建迭代器
-把对象/类创建为迭代器，必须实现`__iter()__`和`__next()__`方法  
-- `__iter()__`：返回迭代器对象本身  
-- `__next()__`：返回序列中的下一个项目  
+把对象/类创建为迭代器，必须实现`__iter__()`和`__next__()`方法  
+- `__iter__()`：返回迭代器对象本身  
+- `__next__()`：返回序列中的下一个项目  
 ```
 # 输入
 from collections import Iterator
@@ -70,10 +70,12 @@ print(isinstance(myclass, Iterator))   # 判断 myclass 是否为一个迭代器
 print(myclass == myiter)   # 判断 myclass 是否和 myiter 一样
 print(next(myclass))   # 等价于 print(next(myiter)) 
 print(next(myclass))   # 等价于 print(next(myiter))
+print(myclass.__next__())   # 迭代器输出元素可以用
 
 # 输出
 True
 True
 1
 2
+3
 ```
