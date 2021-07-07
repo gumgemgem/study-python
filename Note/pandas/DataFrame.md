@@ -332,7 +332,142 @@ print(df2)
 1  3  4  5
 ```
 
-## 行列索引
+## 列操作
+
+### 提取列
+- 通过类似字典标记的方式`DataFrame[column]`或属性的方式`DataFrame.column`，可以提取 DataFrame 的某一列为一个 Series  
+- `DataFrame[column]`适用于任何列名，`DataFrame.column`只适用于列名是一个合理的 Python 变量名时  
+```py
+# 输入
+import pandas as pd
+
+data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002, 2003],
+        'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+df = pd.DataFrame(data, columns=['year', 'state sta', 'pop'])
+print(df['year'])
+print('------------------------')
+print(df.year)
+print('------------------------')
+# 这里不可以使用 df.state sta
+print(df['state sta'])
+
+# 输出
+0    2000
+1    2001
+2    2002
+3    2001
+4    2002
+5    2003
+Name: year, dtype: int64
+------------------------
+0    2000
+1    2001
+2    2002
+3    2001
+4    2002
+5    2003
+Name: year, dtype: int64
+------------------------
+0      Ohio
+1      Ohio
+2      Ohio
+3    Nevada
+4    Nevada
+5    Nevada
+Name: state sta, dtype: object
+```
+
+### 修改列
+- 列可以通过赋值的方式进行修改  
+- `DataFrame.column`的方式不可以创建新的列，只能用`DataFrame[column]`的方式  
+- 将列表或数组赋值给某个列时，其长度必须和 DataFrame 的长度相匹配  
+- 将 Series 赋值给某个列时，会精确匹配 DataFrame 的行索引，所有空位都会被填上缺失值  
+```py
+import pandas as pd
+import numpy as np
+
+data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002, 2003],
+        'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+df = pd.DataFrame(data, columns=['year', 'state sta', 'pop', 'debt'],
+                  index=['one', 'two', 'three', 'four', 'five', 'six'])
+
+df['debt'] = 16.5
+print(df)
+print('----------------------------------')
+df['debt'] = np.arange(6)
+print(df)
+print('----------------------------------')
+df['debt'] = pd.Series([-1.2, -1.5, -1.7], index=['two', 'four', 'five'])
+print(df)
+
+# 输出
+       year state sta  pop  debt
+one    2000      Ohio  1.5  16.5
+two    2001      Ohio  1.7  16.5
+three  2002      Ohio  3.6  16.5
+four   2001    Nevada  2.4  16.5
+five   2002    Nevada  2.9  16.5
+six    2003    Nevada  3.2  16.5
+----------------------------------
+       year state sta  pop  debt
+one    2000      Ohio  1.5     0
+two    2001      Ohio  1.7     1
+three  2002      Ohio  3.6     2
+four   2001    Nevada  2.4     3
+five   2002    Nevada  2.9     4
+six    2003    Nevada  3.2     5
+----------------------------------
+       year state sta  pop  debt
+one    2000      Ohio  1.5   NaN
+two    2001      Ohio  1.7  -1.2
+three  2002      Ohio  3.6   NaN
+four   2001    Nevada  2.4  -1.5
+five   2002    Nevada  2.9  -1.7
+six    2003    Nevada  3.2   NaN
+```
+
+### 删除列
+`del DataFrame[column]`或`del DataFrame.column`可以删除指定列  
+```py
+# 输入
+import pandas as pd
+
+data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002, 2003],
+        'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+df = pd.DataFrame(data, columns=['year', 'state sta', 'pop'],
+                  index=['one', 'two', 'three', 'four', 'five', 'six'])
+
+df['eastern'] = (df['state sta'] == 'Ohio')
+print(df)
+print('----------------------------------')
+del df['eastern']
+print(df)
+
+# 输出
+       year state sta  pop  eastern
+one    2000      Ohio  1.5     True
+two    2001      Ohio  1.7     True
+three  2002      Ohio  3.6     True
+four   2001    Nevada  2.4    False
+five   2002    Nevada  2.9    False
+six    2003    Nevada  3.2    False
+----------------------------------
+       year state sta  pop
+one    2000      Ohio  1.5
+two    2001      Ohio  1.7
+three  2002      Ohio  3.6
+four   2001    Nevada  2.4
+five   2002    Nevada  2.9
+six    2003    Nevada  3.2
+```
+
+## 行操作
 
 
 ## DataFrame 的常用属性
@@ -374,6 +509,20 @@ print(df2)
   # 输出
   RangeIndex(start=0, stop=6, step=1)
   Index(['state', 'year', 'pop'], dtype='object')
+  ```
+
+### T
+- 描述  
+  `T`属性可以对 DataFrame 进行转置  
+  
+- 语法  
+  ```py
+  DataFrame.T
+  ```
+
+- 实例  
+  ```py
+  
   ```
 
 ## DataFrame 的常用方法
