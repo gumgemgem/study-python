@@ -337,6 +337,7 @@ print(df2)
 ### 提取列
 - 通过类似字典标记的方式`DataFrame[column]`或属性的方式`DataFrame.column`，可以提取 DataFrame 的某一列为一个 Series  
 - `DataFrame[column]`适用于任何列名，`DataFrame.column`只适用于列名是一个合理的 Python 变量名时  
+- 通过`DataFrame[[column1, column2, ...]]`的方式可以得到一组列  
 ```py
 # 输入
 import pandas as pd
@@ -352,6 +353,8 @@ print(df.year)
 print('------------------------')
 # 这里不可以使用 df.state sta
 print(df['state sta'])
+print('------------------------')
+print(df[['year', 'pop']])
 
 # 输出
 0    2000
@@ -377,6 +380,14 @@ Name: year, dtype: int64
 4    Nevada
 5    Nevada
 Name: state sta, dtype: object
+------------------------
+       year  pop
+one    2000  1.5
+two    2001  1.7
+three  2002  3.6
+four   2001  2.4
+five   2002  2.9
+six    2003  3.2
 ```
 
 ### 修改列
@@ -467,8 +478,76 @@ five   2002    Nevada  2.9
 six    2003    Nevada  3.2
 ```
 
-## 行操作
+## 用 loc 和 iloc 进行选取
+轴标签`loc`和整数索引`iloc`，可以从 DataFrame 选择行或行和列的子集  
 
+|类型|说明|
+|:-----|:----|
+|df[val]|从 DataFrame 选取单列或一组列|
+|df.loc[val]|通过标签，选取 DataFrame 的单个行或一组行|
+|df.loc[:, val]|通过标签，选取单个列或列子集|
+|df.loc[val1, val2]|通过标签同时选取行和列|
+|df.iloc[where]|通过整数位置，从 DataFrame 选取单个行或行子集|
+|df.iloc[:, where]|通过整数位置，从 DataFrame 选取单个列或列子集|
+|df.iloc[where_i, where_j]|通过整数位置，同时选取行和列|
+
+实例：  
+```py
+# 输入
+import pandas as pd
+
+data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002, 2003],
+        'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+df = pd.DataFrame(data, columns=['year', 'state sta', 'pop'],
+                  index=['one', 'two', 'three', 'four', 'five', 'six'])
+
+print(df.loc['one'])
+print('----------------------------------')
+print(df.loc[['one', 'two']])
+print('----------------------------------')
+print(df.loc['one': 'three'])
+print('----------------------------------')
+print(df.loc[:, 'year'])
+print('----------------------------------')
+print(df.loc['one', 'year'])
+print('----------------------------------')
+print(df.loc['one': 'three', 'year': 'pop'])
+
+# 输出
+year         2000
+state sta    Ohio
+pop           1.5
+Name: one, dtype: object
+----------------------------------
+     year state sta  pop
+one  2000      Ohio  1.5
+two  2001      Ohio  1.7
+----------------------------------
+       year state sta  pop
+one    2000      Ohio  1.5
+two    2001      Ohio  1.7
+three  2002      Ohio  3.6
+----------------------------------
+one      2000
+two      2001
+three    2002
+four     2001
+five     2002
+six      2003
+Name: year, dtype: int64
+----------------------------------
+2000
+----------------------------------
+       year state sta  pop
+one    2000      Ohio  1.5
+two    2001      Ohio  1.7
+three  2002      Ohio  3.6
+```
+```py
+
+```
 
 ## DataFrame 的常用属性
 
@@ -510,6 +589,48 @@ six    2003    Nevada  3.2
   RangeIndex(start=0, stop=6, step=1)
   Index(['state', 'year', 'pop'], dtype='object')
   ```
+  
+### values
+- 描述  
+  `values`属性可以以二维数组的形式返回 DataFrame 中的数据  
+  
+- 语法  
+  ```py
+  DataFrame.values
+  ```
+
+- 实例  
+  ```py
+  # 输入
+  import pandas as pd
+
+  data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+          'year': [2000, 2001, 2002, 2001, 2002, 2003],
+          'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+  df = pd.DataFrame(data, columns=['year', 'state sta', 'pop'],
+                    index=['one', 'two', 'three', 'four', 'five', 'six'])
+
+  print(df)
+  print('---------------------------------------')
+  print(df.values)
+  
+  # 输出
+         year state sta  pop
+  one    2000      Ohio  1.5
+  two    2001      Ohio  1.7
+  three  2002      Ohio  3.6
+  four   2001    Nevada  2.4
+  five   2002    Nevada  2.9
+  six    2003    Nevada  3.2
+  ---------------------------------------
+  [[2000 'Ohio' 1.5]
+   [2001 'Ohio' 1.7]
+   [2002 'Ohio' 3.6]
+   [2001 'Nevada' 2.4]
+   [2002 'Nevada' 2.9]
+   [2003 'Nevada' 3.2]]
+  ```
 
 ### T
 - 描述  
@@ -522,7 +643,37 @@ six    2003    Nevada  3.2
 
 - 实例  
   ```py
+  # 输入
+  import pandas as pd
+
+  data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+          'year': [2000, 2001, 2002, 2001, 2002, 2003],
+          'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+  df = pd.DataFrame(data, columns=['year', 'state sta', 'pop'],
+                    index=['one', 'two', 'three', 'four', 'five', 'six'])
+  print('----------------------- 转置前 ----------------------')
+  print(df)
+  print('\n')
+  print('----------------------- 转置后 ----------------------')
+  print(df.T)
   
+  # 输出
+  ----------------------- 转置前 ----------------------
+         year state sta  pop
+  one    2000      Ohio  1.5
+  two    2001      Ohio  1.7
+  three  2002      Ohio  3.6
+  four   2001    Nevada  2.4
+  five   2002    Nevada  2.9
+  six    2003    Nevada  3.2
+
+
+  ----------------------- 转置后 ----------------------
+              one   two three    four    five     six
+  year       2000  2001  2002    2001    2002    2003
+  state sta  Ohio  Ohio  Ohio  Nevada  Nevada  Nevada
+  pop         1.5   1.7   3.6     2.4     2.9     3.2
   ```
 
 ## DataFrame 的常用方法
