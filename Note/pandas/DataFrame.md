@@ -332,9 +332,9 @@ print(df2)
 1  3  4  5
 ```
 
-## 列操作
+## 3、列操作
 
-### 提取列
+### 3.1 提取列
 - 通过类似字典标记的方式`DataFrame[column]`或属性的方式`DataFrame.column`，可以提取 DataFrame 的某一列为一个 Series  
 - `DataFrame[column]`适用于任何列名，`DataFrame.column`只适用于列名是一个合理的 Python 变量名时  
 - 通过`DataFrame[[column1, column2, ...]]`的方式可以得到一组列  
@@ -390,7 +390,7 @@ five   2002  2.9
 six    2003  3.2
 ```
 
-### 修改列
+### 3.2 修改列
 - 列可以通过赋值的方式进行修改  
 - `DataFrame.column`的方式不可以创建新的列，只能用`DataFrame[column]`的方式  
 - 将列表或数组赋值给某个列时，其长度必须和 DataFrame 的长度相匹配  
@@ -441,7 +441,7 @@ five   2002    Nevada  2.9  -1.7
 six    2003    Nevada  3.2   NaN
 ```
 
-### 删除列
+### 3.3 删除列
 `del DataFrame[column]`或`del DataFrame.column`可以删除指定列  
 ```py
 # 输入
@@ -478,7 +478,7 @@ five   2002    Nevada  2.9
 six    2003    Nevada  3.2
 ```
 
-## 用 loc 和 iloc 进行选取
+## 4、用 loc 和 iloc 进行选取
 轴标签`loc`和整数索引`iloc`，可以从 DataFrame 选择行或行和列的子集  
 
 |类型|说明|
@@ -490,6 +490,10 @@ six    2003    Nevada  3.2
 |df.iloc[where]|通过整数位置，从 DataFrame 选取单个行或行子集|
 |df.iloc[:, where]|通过整数位置，从 DataFrame 选取单个列或列子集|
 |df.iloc[where_i, where_j]|通过整数位置，同时选取行和列|
+
+注意：  
+- 整数索引`iloc`是从 0 开始  
+- 轴标签`loc`和整数索引`iloc`都可进行行列的切片。轴标签`loc`进行切片时是左闭右闭的区间；整数索引`iloc`进行切片时是左闭右开的区间  
 
 实例：  
 ```py
@@ -546,12 +550,60 @@ two    2001      Ohio  1.7
 three  2002      Ohio  3.6
 ```
 ```py
+# 输入
+import pandas as pd
 
+data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002, 2003],
+        'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+df = pd.DataFrame(data, columns=['year', 'state sta', 'pop'],
+                  index=['one', 'two', 'three', 'four', 'five', 'six'])
+
+print(df.iloc[0])
+print('----------------------------------')
+print(df.iloc[[0, 1]])
+print('----------------------------------')
+print(df.iloc[0: 2])
+print('----------------------------------')
+print(df.iloc[:, 0])
+print('----------------------------------')
+print(df.iloc[0, 0])
+print('----------------------------------')
+print(df.iloc[0: 2, 0: 1])
+
+# 输出
+year         2000
+state sta    Ohio
+pop           1.5
+Name: one, dtype: object
+----------------------------------
+     year state sta  pop
+one  2000      Ohio  1.5
+two  2001      Ohio  1.7
+----------------------------------
+     year state sta  pop
+one  2000      Ohio  1.5
+two  2001      Ohio  1.7
+----------------------------------
+one      2000
+two      2001
+three    2002
+four     2001
+five     2002
+six      2003
+Name: year, dtype: int64
+----------------------------------
+2000
+----------------------------------
+     year
+one  2000
+two  2001
 ```
 
-## DataFrame 的常用属性
+## 5、DataFrame 的常用属性
 
-### index
+### 5.1 index
 - 描述  
   `index`属性可以获取 DataFrame 的行索引序列  
   
@@ -563,7 +615,7 @@ three  2002      Ohio  3.6
 - 实例  
   见`columns`实例  
 
-### columns
+### 5.2 columns
 - 描述  
   `columns`属性可以获取 DataFrame 的列序列  
   
@@ -590,7 +642,7 @@ three  2002      Ohio  3.6
   Index(['state', 'year', 'pop'], dtype='object')
   ```
   
-### values
+### 5.3 values
 - 描述  
   `values`属性可以以二维数组的形式返回 DataFrame 中的数据  
   
@@ -632,7 +684,7 @@ three  2002      Ohio  3.6
    [2003 'Nevada' 3.2]]
   ```
 
-### T
+### 5.4 T
 - 描述  
   `T`属性可以对 DataFrame 进行转置  
   
@@ -676,9 +728,9 @@ three  2002      Ohio  3.6
   pop         1.5   1.7   3.6     2.4     2.9     3.2
   ```
 
-## DataFrame 的常用方法
+## 6、DataFrame 的常用方法
 
-### head()
+### 6.1 head()
 - 描述  
   `head()`方法可以选取前五行，对较大的 DataFrame 比较友好
   
