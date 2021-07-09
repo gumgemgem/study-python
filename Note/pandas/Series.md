@@ -447,7 +447,7 @@ dtype: int64
 
 ## 7、Series 的属性
 
-#### values
+#### 7.1 values
 `values`作为 Pandas 和 NumPy 中间转换的桥梁，可以将 Pandas 中的数据格式转化为 NumPy 中的数组形式  
 ```py
 # 输入
@@ -462,7 +462,7 @@ print(type(obj.values))
 <class 'numpy.ndarray'>
 ```
 
-#### array
+#### 7.2 array
 `array`可以将 Series 中的 data 数组提取出来  
 ```py
 # 输入
@@ -478,7 +478,7 @@ print(obj.array)
 Length: 5, dtype: float64
 ```
 
-#### index
+#### 7.3 index
 `index`可以获得 Series 对象的索引对象  
 ```py
 # 输入
@@ -491,8 +491,9 @@ print(obj.index)
 RangeIndex(start=0, stop=4, step=1)
 ```
 
-#### name
-`name`属性可以为 Series 对象的数据和索引标签命名  
+#### 7.4 name
+- `name`属性可以为 Series 对象的数据和索引标签命名  
+- `obj.name`可以为数据命名；`obj.index.name`可以为索引标签命名  
 ```py
 # 输入
 import pandas as pd
@@ -501,9 +502,11 @@ d = {'a': 1., 'b': 2., 'c': 3., 'd': 4., 'e': 5.}
 obj = pd.Series(d)
 print(obj)
 print('命名前 obj 数据和索引标签的名称： {} 和 {}'.format(obj.name, obj.index.name))
+print('--------------------------------')
 obj.name = 'number'
 obj.index.name = 'letter'
 print('命名后 obj 数据和索引标签的名称： {} 和 {}'.format(obj.name, obj.index.name))
+print(obj)
 
 # 输出
 a    1.0
@@ -513,10 +516,18 @@ d    4.0
 e    5.0
 dtype: float64
 命名前 obj 数据和索引标签的名称： None 和 None
+--------------------------------
 命名后 obj 数据和索引标签的名称： number 和 letter
+letter
+a    1.0
+b    2.0
+c    3.0
+d    4.0
+e    5.0
+Name: number, dtype: float64
 ```
 
-#### dtype
+#### 7.5 dtype
 `dtype`可以获得 Series 对象的数据类型和索引标签的类型  
 ```py
 # 输入
