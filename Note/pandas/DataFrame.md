@@ -642,7 +642,49 @@ two  2001
   Index(['state', 'year', 'pop'], dtype='object')
   ```
   
-### 5.3 values
+### 5.3 name
+- 描述  
+  - `name`属性可以给 DataFrame 的索引和列命名  
+  - `df.index.name`给索引命名；`df.columns.name`给列命名  
+
+- 实例  
+  ```py
+  # 输入
+  import pandas as pd
+
+  data = {'state sta': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+          'year': [2000, 2001, 2002, 2001, 2002, 2003],
+          'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
+  df = pd.DataFrame(data, columns=['year', 'state sta', 'pop'],
+                    index=['one', 'two', 'three', 'four', 'five', 'six'])
+
+  print(df)
+  print('--------------------------------')
+  df.columns.name = 'country'
+  df.index.name = 'sequence'
+  print(df)
+  
+  # 输出
+  a    1.0
+  b    2.0
+  c    3.0
+  d    4.0
+  e    5.0
+  dtype: float64
+  命名前 obj 数据和索引标签的名称： None 和 None
+  --------------------------------
+  命名后 obj 数据和索引标签的名称： number 和 letter
+  letter
+  a    1.0
+  b    2.0
+  c    3.0
+  d    4.0
+  e    5.0
+  Name: number, dtype: float64
+  ```
+  
+### 5.4 values
 - 描述  
   `values`属性可以以二维数组的形式返回 DataFrame 中的数据  
   
@@ -684,7 +726,7 @@ two  2001
    [2003 'Nevada' 3.2]]
   ```
 
-### 5.4 T
+### 5.5 T
 - 描述  
   `T`属性可以对 DataFrame 进行转置  
   
