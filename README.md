@@ -1,6 +1,6 @@
 # study-python
 
-![gitee-mirror.yml](https://github.com/gumgemgem/my-actions/actions/workflows/gitee-mirror.yml/badge.svg)
+[![Build Status](https://github.com/gumgemgem/my-actions/workflows/tee2hub/badge.svg?branch=main)](https://github.com/gumgemgem/my-actions/actions)
 
 参考：
 
