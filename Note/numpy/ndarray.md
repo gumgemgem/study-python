@@ -327,8 +327,8 @@ print(arr2[0:2][1:3])
 
 ## 5、ndarray 常用方法
 
-### 5.1 reshape()
-`reshape()`方法返回在原数组的基础上更改后的**新数组**  
+### 5.1 numpy.ndarray.reshape()
+`rnumpy.ndarray.reshape()`方法返回在原数组的基础上更改后的**新数组**  
 
 - 返回的是更改形状后的新数组  
 - 新数组的元素个数必须和原数组保持一致  
@@ -354,8 +354,8 @@ print(two_arr2)
  [18 19 20 21 22 23]]
 ```
 
-### 5.2 resize()
-`resize()`方法在**原数组**的基础上直接更改形状，无返回值
+### 5.2 numpy.ndarray.resize()
+`numpy.ndarray.resize()`方法在**原数组**的基础上直接更改形状，无返回值
 
 - 直接在原数组上进行修改，无返回值  
 - 新数组的元素个数不需要和原数组保持一致：少了截取，多了用 0 补全  
@@ -382,7 +382,7 @@ print(one_arr)
  [ 0  0  0  0  0  0]]
 ```
 
-### 5.3 flatten()
+### 5.3 numpy.ndarray.flatten()
 将多维数组降为一维数组  
 **注意**：返回的是数组的拷贝（copy），对拷贝所做的修改不会影响原来的数组  
 
@@ -414,7 +414,7 @@ print('修改后的 arr2:\n{}'.format(arr2))
  [18 19 20 21 22 23]]
 ```
 
-### 5.4 ravel()
+### 5.4 numpy.ndarray.ravel()
 将多维数组降为一维数组  
 **注意**：返回的是数组的视图（view），对视图所做的修改会影响原来的数组  
 
@@ -444,6 +444,61 @@ print('修改后的 arr2:\n{}'.format(arr2))
  [ 6  7  8  9 10 11]
  [12 13 14 15 16 17]
  [18 19 20 21 22  0]]
+```
+
+### 5.5 numpy.sort() 和 numpy.ndarray.sort()
+`numpy.sort()`返回排序后的数组的拷贝，即返回一个排序好的新数组  
+`numpy.ndarray.sort()`在原数组上直接进行排序，无返回值  
+
+```py
+# 输入
+import numpy as np
+
+arr1 = np.random.uniform(0, 10, 5)
+print(arr1)
+arr2 = np.sort(arr1)
+print(arr2)
+arr1.sort()
+print(arr1)
+
+# 输出
+[4.76127328 3.55359461 8.85334586 3.92751482 8.83807405]
+[3.55359461 3.92751482 4.76127328 8.83807405 8.85334586]
+[3.55359461 3.92751482 4.76127328 8.83807405 8.85334586]
+```
+
+### 5.6 numpy.linspace()
+`numpy.linspace()`返回指定间隔内均匀间隔的数字
+
+- 语法  
+```py
+numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
+```
+
+参数说明：  
+start -- 序列的起始位置  
+stop -- 序列的终止位置  
+num -- 产生样本的数目，**默认**为 50  
+endpoint -- 为真（**默认**），stop 为最后一个样本值；为假，则不包含 stop  
+retstep -- 为假（**默认**），不返回间隔大小（step）；为真，则返回间隔大小  
+dtype -- 数组输出的类型。**默认**为 None，此时会自行推断数据类型；但 dtype 不会被推断为整型，即使 start 和 stop 均为整型，dtype 也会被推断为浮点型  
+
+- 实例  
+```py
+# 输入
+import numpy as np
+
+a = np.linspace(0, 10, 5)
+print(a)
+b = np.linspace(0, 10, 5, endpoint=False)
+print(b)
+c = np.linspace(0, 10, 5, retstep=True)
+print(c)
+
+# 输出
+[ 0.   2.5  5.   7.5 10. ]
+[0. 2. 4. 6. 8.]
+(array([ 0. ,  2.5,  5. ,  7.5, 10. ]), 2.5)
 ```
 
 ## 6、ndarray 常用统计函数

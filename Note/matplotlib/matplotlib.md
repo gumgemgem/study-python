@@ -99,6 +99,8 @@ plt.show()
 plt.plot(*args[, scalex=True, scaley=True, data=None, **kwargs])
 ```
 
+**注意**：当变量是随机生成的一组数或任意一组无序数时，需要先对变量进行排序再定义函数，否则折线图会混乱  
+
 - 实例  
 ```py
 import numpy as np
@@ -115,3 +117,17 @@ plt.ylabel('price')
 plt.legend(['Apple', 'IBM'])
 plt.show()
 ```
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+random_number = np.random.uniform(0, 100, 10)
+random_number.sort()
+y = random_number * 10 + 1
+z = random_number ** 3 + 20
+plt.plot(random_number, y, c='r')
+plt.plot(random_number, z, c='g')
+plt.show())
+```
+
+## 直方图
