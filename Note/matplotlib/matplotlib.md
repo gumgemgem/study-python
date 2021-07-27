@@ -25,10 +25,10 @@ import matplotlib.pyplot as plt
 
 语法：  
 ```py
-savefig(fname[, dpi=None, facecolor='w', edgecolor='w',
-        orientation='portrait', papertype=None, format=None,
-        transparent=False, bbox_inches=None, pad_inches=0.1,
-        frameon=None, metadata=None])
+matplotlib.pyplot.savefig(fname[, dpi=None, facecolor='w', edgecolor='w',
+                          orientation='portrait', papertype=None, format=None,
+                          transparent=False, bbox_inches=None, pad_inches=0.1,
+                          frameon=None, metadata=None])
 ```
 
 ### 1.2 show()
@@ -37,7 +37,7 @@ savefig(fname[, dpi=None, facecolor='w', edgecolor='w',
 
 语法：  
 ```py
-show([*, block=None])
+matplotlib.pyplot.show([*, block=None])
 ```
 
 ### 1.3 xlabel() 和 ylabel()
@@ -46,8 +46,8 @@ show([*, block=None])
 
 语法：  
 ```py
-xlabel(xlabel[, fontdict=None, labelpad=None, *, loc=None, **kwargs])
-ylabel(ylabel[, fontdict=None, labelpad=None, *, loc=None, **kwargs])
+matplotlib.pyplot.xlabel(xlabel[, fontdict=None, labelpad=None, *, loc=None, **kwargs])
+matplotlib.pyplot.ylabel(ylabel[, fontdict=None, labelpad=None, *, loc=None, **kwargs])
 ```
 
 ### 1.4 title()
@@ -56,7 +56,7 @@ ylabel(ylabel[, fontdict=None, labelpad=None, *, loc=None, **kwargs])
 
 语法：  
 ```py
-title(label[, fontdict=None, loc=None, pad=None, *, y=None, **kwargs])
+matplotlib.pyplot.title(label[, fontdict=None, loc=None, pad=None, *, y=None, **kwargs])
 ```
 
 ### 1.5 legend()
@@ -68,11 +68,75 @@ title(label[, fontdict=None, loc=None, pad=None, *, y=None, **kwargs])
 legend(*args, **kwargs)
 ```
 
+### 1.6 xticks() 和 yticks()
+获得或者设置 x 轴和 y 轴的坐标位置及标签
+
+- 语法  
+```py
+matplotlib.pyplot.xticks(ticks=None, labels=None, **kwargs)
+matplotlib.pyplot.yticks(ticks=None, labels=None, **kwargs)
+```
+
+参数说明：  
+ticks -- 数组、列表等类型；位置列表，传递一个空列表会删除所有刻度位置（**可选**）  
+labels -- 数组、列表等类型；要放置在给定刻度位置的标签，只有在同时传递了刻度线时，才能传递此参数（**可选**）  
+**kwargs -- 文本属性，可用于控制标签的外观  
+
+返回值：  
+locs -- 刻度位置的列表  
+labels -- 刻度标签列表的对象
+
+- 调用方法（Call signatures）  
+```py
+locs, labels = xticks()            # 获取 x 轴刻度的位置和标签
+locs, labels = yticks()            # 获取 y 轴刻度的位置和标签
+
+xticks(ticks, [labels], **kwargs)  # 设置 x 轴刻度的位置和标签
+yticks(ticks, [labels], **kwargs)  # 设置 y 轴刻度的位置和标签
+```
+
+- 实例  
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+locs, labels = plt.xticks()        # 获取 x 轴刻度的位置和标签
+plt.xticks(np.arange(0, 10, 2))    # 设置 x 轴刻度的位置
+plt.xticks([0, 1, 2], ['January', 'February', 'March'])   # 设置 x 轴刻度的位置和标签
+plt.xticks([0, 1, 2], ['January', 'February', 'March'],
+           rotation=45)            # 设置 x 轴刻度的位置，标签和属性
+plt.xticks([])                     # 删除 x 轴刻度的位置
+```
+
+### 1.7 text()
+给图像 x, y 位置处添加文本 s  
+
+- 语法  
+```py
+matplotlib.pyplot.text(x, y, s, fontdict=None, **kwargs)
+```
+
+参数说明：  
+x, y -- 浮点型；设置文本的位置  
+s -- 需要设置的文本信息  
+fontsize -- 用于覆盖默认文本属性的字典  
+**kwargs -- 文本属性，可用于控制文本的外观  
+
+- 实例  
+```py
+import matplotlib.pyplot as plt
+
+plt.text(i, j + 0.1, j, fontsize=12, ha='center')
+```
+
 ## 2、散点图
 
 - 语法  
 ```py
-plt.scatter(x, y[, s=None, c=None, marker=None, cmap=None, norm=None, vmin=None, vmax=None, alpha=None, linewidths=None, *, edgecolors=None, plotnonfinite=False, data=None, **kwargs])
+matplotlib.pyplot.scatter(x, y, s=None, c=None, marker=None, cmap=None,
+                          norm=None, vmin=None, vmax=None, alpha=None,
+                          linewidths=None, *, edgecolors=None,
+                          plotnonfinite=False, data=None, **kwargs)
 ```
 
 常用参数说明：  
@@ -92,11 +156,11 @@ plt.scatter(arrx, arry, s=100, c='green', marker='*')
 plt.show()
 ```
 
-## 折线图
+## 3、折线图
 
 - 语法  
 ```py
-plt.plot(*args[, scalex=True, scaley=True, data=None, **kwargs])
+matplotlib.pyplot.plot(*args[, scalex=True, scaley=True, data=None, **kwargs])
 ```
 
 **注意**：当变量是随机生成的一组数或任意一组无序数时，需要先对变量进行排序再定义函数，否则折线图会混乱  
@@ -130,4 +194,39 @@ plt.plot(random_number, z, c='g')
 plt.show())
 ```
 
-## 直方图
+## 4、条形图 or 柱状图
+
+- 语法  
+```py
+matplotlib.pyplot.bar(x, height, width=0.8, bottom=None, *, align='center',
+                      data=None, **kwargs)
+```
+
+- 实例  
+```py
+x = ['aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg', 'hh']
+y = [2.3, 3.4, 1.2, 6.6, 7.0, 5.7, 4.6, 3.9]
+plt.bar(x, y)
+plt.xlabel('state')
+plt.ylabel('GDP')
+plt.title('GDP for each state')
+plt.xticks(rotation=45)
+
+# 用列表 x 的坐标作为横坐标
+# for i in range(len(x)):
+#     plt.text(i, y[i] + 0.1, y[i], fontsize=12, ha='center')
+
+# 用列表 x 的值作为横坐标
+# for i in range(len(x)):
+#     plt.text(x[i], y[i] + 0.1, y[i], fontsize=12, ha='center')
+
+# 用列表 x 的坐标作为横坐标，并且使用 zip() 函数进行打包
+# for i, j in zip(range(len(x)), y):
+#     plt.text(i, j + 0.1, j, fontsize=12, ha='center')
+
+# 用列表 x 的值作为横坐标，并且使用 zip() 函数进行打包
+for i, j in zip(x, y):
+    plt.text(i, j + 0.1, j, fontsize=12, ha='center')
+
+plt.show()
+```
