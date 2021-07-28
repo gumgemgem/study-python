@@ -230,3 +230,52 @@ for i, j in zip(x, y):
 
 plt.show()
 ```
+
+## 5、直方图
+直方图和条形图的区别：  
+直方图是用面积表示各组频数的多少，矩形的高度表示每一组的频数或频率，宽度则表示各组的组距，因此其高度与宽度均有意义；其次，由于分组数据具有连续性，直方图的各矩形通常是连续排列。  
+条形图矩形的宽度不具有实际的意义，可以随意调节，因此是分开排列的  
+
+- 语法  
+```py
+matplotlib.pyplot.hist(x, bins=None, range=None, density=False, weights=None,
+                       cumulative=False, bottom=None, histtype='bar',
+                       align='mid', orientation='vertical', rwidth=None,
+                       log=False, color=None, label=None, stacked=False, *, 
+                       data=None, **kwargs)
+```
+
+常用参数说明：  
+x -- 数组或序列；输入值  
+bins -- 整数、序列或字符串；  
+        当为整数时，从 xmin 开始，每次增加 (xmax - xmin)/bins 的范围进行分布统计；   
+        当为序列时，范围按照左闭右开的区间进行分布统计；  
+denisty -- False（**默认**）或 True；按照统计频率的方式进行分布显示  
+weights -- 类数组型；  
+           给频数加权重；当 denisty=True 时，权重会进行归一化，保证频率之和为1  
+orientation -- 'vertical'(**默认**) 或 'horizontal'  
+color -- 单个颜色值或颜色组成的类数组型  
+
+- 实例  
+```py
+import matplotlib.pyplot as plt
+
+m = [2, 3, 68, 10, 12, 45, 36, 28, 19, 44, 12, 23]
+b = [0, 10, 20, 30, 40, 50]
+plt.hist(m, b)
+plt.show()
+```
+
+## 6、饼图
+- 实例  
+```py
+import matplotlib.pyplot as plt
+
+labels = ['walking', 'driving', 'sleeping', 'relaxing']
+slides = [2, 1, 7, 14]
+colors_list = ['r', 'y', 'g', 'b']
+plt.title('Pie Graph')
+plt.pie(slides, labels=labels, shadow=True, colors=colors_list,
+        explode=[0.2, 0, 0, 0], autopct='%.2f%%')
+plt.show()
+```
