@@ -267,6 +267,21 @@ plt.show()
 ```
 
 ## 6、饼图
+- 语法  
+```py
+matplotlib.pyplot.pie(x, explode=None, labels=None, colors=None, autopct=None,  
+                      pctdistance=0.6, shadow=False, labeldistance=1.1, 
+                      startangle=0, radius=1, counterclock=True, 
+                      wedgeprops=None, textprops=None, center=0, 0, frame=False,
+                      rotatelabels=False, *, normalize=None, data=None)
+```
+
+说明：  
+- 当 sum(x) >= 1 时，每个扇形所占的面积为
+
+常用参数说明：  
+x -- 
+
 - 实例  
 ```py
 import matplotlib.pyplot as plt
