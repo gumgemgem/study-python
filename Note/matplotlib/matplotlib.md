@@ -129,6 +129,8 @@ import matplotlib.pyplot as plt
 plt.text(i, j + 0.1, j, fontsize=12, ha='center')
 ```
 
+### 1.8 
+
 ## 2、散点图
 
 - 语法  
@@ -303,4 +305,19 @@ plt.title('Pie Graph')
 plt.pie(slides, labels=labels, shadow=True, colors=colors_list,
         explode=[0.2, 0, 0, 0], autopct='%.2f%%')
 plt.show()
+```
+
+## 7、子图
+- 语法  
+```py
+matplotlib.pyplot.subplots(nrows=1, ncols=1, *, sharex=False, sharey=False, 
+                           squeeze=True, subplot_kw=None, gridspec_kw=None, **fig_kw)
+```
+
+参数说明：  
+nrows/ncols -- 整型（默认为 1）；在行/列上的子图数量  
+
+- 实例  
+```py
+
 ```
