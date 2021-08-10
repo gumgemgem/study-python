@@ -49,7 +49,7 @@ print(df)
 5  2003  Nevada  3.2
 ```
 
-## 2、DataFrame 支持多种输入数据
+## 2、创建 DataFrame
 
 ### 2.1 用二维 ndarray 数组生成 DataFrame
 - 二维数组的一行代表 DataFrame 中的一条记录  
@@ -81,8 +81,8 @@ two  4.0  3.0  2.0  1.0
 ### 2.2 Series、字典、列表、元组组成的列表生成 DataFrame
 - 和二维数组生成 DataFrame 类似，列表的各项是 DataFrame 中的一行。其中字典和 Series 索引的并集将会成为 DataFrame 的列  
 - 如果是由 Series 组成的列表或字典组成的列表生成的 DataFrame  
-  由于 Series 会生成行索引，创建 DataFrame 时会将行索引转化为列，因此 DataFrame 指定的列最好和 Series 的索引（未指定时默认 0 开始的自然数序列）存在交集，否则将会没有数值；但 DataFrame 的行索引可以随意进行指定  
-  字典组成的列表类似，DataFrame 指定的列最好和字典的建序列存在交集，否则将会没有数值；但 DataFrame 的行索引可以随意进行指定  
+  由于 Series 会生成行索引，创建 DataFrame 时会将行索引转化为列，因此 DataFrame 指定的列最好和 Series 的索引（未指定时默认 0 开始的自然数序列）存在交集，否则将会没有数值；但 Daimport numpy as npaFrame 的行索引可以随意进行指定  
+  字import matplotlib.pyplot as plt典组成的列表类似，DataFrame 指定的列最好和字典的建序列存在交集，否则将会没有数值；但 DataFrame 的行索引可以随意进行指定  
 ```py
 # 输入
 import pandas as pd
@@ -321,6 +321,9 @@ print(df2)
 0  2  3  4
 1  3  4  5
 ```
+
+### 2.7 从外部文件数据创建 DataFrame
+详情见
 
 ## 3、列操作
 
