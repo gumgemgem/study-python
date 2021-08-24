@@ -767,12 +767,15 @@ two  2001
 
 ### 6.1 head()
 - 描述  
-  `head()`方法可以选取前五行，对较大的 DataFrame 比较友好
+  `head(n)`方法可以选取前 n 行，对较大的 DataFrame 比较友好
   
 - 语法  
   ```py
-  DataFrame.head()
+  DataFrame.head(n)
   ```
+
+  参数说明：  
+  n -- 整数（**默认**：5）  
 
 - 实例  
   ```py
@@ -809,3 +812,15 @@ two  2001
   3  4  5  6  7
   4  5  6  7  8
   ```
+
+### 6.2 tail()
+- 描述  
+  `tail(n)`方法可以选取最后 n 行，对较大的 DataFrame 比较友好
+  
+- 语法  
+  ```py
+  DataFrame.tail(n)
+  ```
+
+  参数说明：  
+  n -- 整数（**默认**：5）  

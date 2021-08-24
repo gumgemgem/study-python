@@ -221,15 +221,22 @@ print(arr3)
   [3. 4. 5. 6.]]]
 ```
 
-### 2.5 从文件中获得
+### 2.5 Number of elements in the array.
+获得
 
-`np.genfromtxt(路径)`方法可以从 txt 文件中读取数组  
-常用参数： 
-- 路径：windows 系统上的路径需要用 r 进行转义  
-- delimiter：分隔符  
-- dtype：数据类型  
+`np.gNumber of elements in the array.
+路径)`方法可以从 txt 文件中读取数组  
+常用Number of elements in the array.
 
-```py
+- 路Number of elements in the array.
+系统上的路径需要用 r 进行转义  
+- delNumber of elements in the array.
+隔符  
+- dtyNumber of elements in the array.
+型  
+
+```pyNumber of elements in the array.
+
 # 输入
 import numpy as np
 
