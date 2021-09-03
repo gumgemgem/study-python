@@ -323,7 +323,7 @@ print(df2)
 ```
 
 ### 2.7 从外部文件数据创建 DataFrame
-详情见
+[详情见 interaction-of-external-files.md](interaction-of-external-files.md)
 
 ## 3、列操作
 
@@ -331,6 +331,8 @@ print(df2)
 - 通过类似字典标记的方式`DataFrame[column]`或属性的方式`DataFrame.column`，可以提取 DataFrame 的某一列为一个 Series  
 - `DataFrame[column]`适用于任何列名，`DataFrame.column`只适用于列名是一个合理的 Python 变量名时  
 - 通过`DataFrame[[column1, column2, ...]]`的方式可以得到一组列  
+- 此方法不可以进行切片操作，即不存在`DataFrame[column1: column2]`的语法  
+
 ```py
 # 输入
 import pandas as pd
@@ -486,7 +488,8 @@ six    2003    Nevada  3.2
 
 注意：  
 - 整数索引`iloc`是从 0 开始  
-- 轴标签`loc`和整数索引`iloc`都可进行行列的切片。轴标签`loc`进行切片时是左闭右闭的区间；整数索引`iloc`进行切片时是左闭右开的区间  
+- 轴标签`loc`和整数索引`iloc`都可进行行列的切片。轴标签`loc`进行切片时是**左闭右闭**的区间；整数索引`iloc`进行切片时是**左闭右开**的区间  
+- 当`df[val]`取多列时，多列必须存放在列表中；且取列无切片的方式  
 
 实例：  
 ```py

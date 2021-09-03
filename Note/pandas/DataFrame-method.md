@@ -8,7 +8,7 @@
 
 - 语法  
 ```py
-pandas.DataFrame.fillna(value=None, method=None, axis=None, inplace=False, limit=None, downcast=None)
+DataFrame.fillna(value=None, method=None, axis=None, inplace=False, limit=None, downcast=None)
 ```
 
 |常用参数|说明|
@@ -85,7 +85,7 @@ func(df1)
 
 - 语法  
 ```py
-pandas.DataFrame.replace(to_replace=None, value=None, inplace=False, limit=None, regex=False, method='pad')
+DataFrame.replace(to_replace=None, value=None, inplace=False, limit=None, regex=False, method='pad')
 ```
 
 |常用参数|说明|
@@ -173,7 +173,7 @@ func(df1)
 
 - 语法  
 ```py
-pandas.DataFrame.copy(deep=True)
+DataFrame.copy(deep=True)
 ```
 
 参数说明：  
@@ -295,7 +295,7 @@ dtype: object
 
 - 语法  
 ```py
-pandas.DataFrame.apply(func, axis=0, raw=False, result_type=None, args=(), **kwargs)
+DataFrame.apply(func, axis=0, raw=False, result_type=None, args=(), **kwargs)
 ```  
 
 |常用参数|说明|
