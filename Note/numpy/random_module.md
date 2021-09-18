@@ -10,9 +10,7 @@
 从均匀分布中抽取样本  
 
 - 语法  
-```py
-numpy.random.uniform(low=0.0, high=1.0, size=None)
-```
+`numpy.random.uniform(low=0.0, high=1.0, size=None)`
 
 样本均匀分布在左闭右开的区间 [low, high) 中  
 

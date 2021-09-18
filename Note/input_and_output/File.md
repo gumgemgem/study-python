@@ -13,7 +13,7 @@
   - file: 文件路径（相对或者绝对路径）（**必需**）  
   - mode: 可选，文件打开模式（**常用**）  
   - buffering: 设置缓冲  
-  - encoding: 一般使用utf8  
+  - encoding: 一般使用utf-8，Windows 编码报错详情见 [参考](https://blog.csdn.net/qq_31267769/article/details/109128882)  
   - errors: 报错级别  
   - newline: 区分换行符  
   - closefd: 传入的file参数类型
