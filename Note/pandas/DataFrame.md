@@ -1,3 +1,4 @@
+
 # DataFrame
 
 约定导入`Pandas`和`Series、DataFrame`的写法：  
@@ -744,7 +745,6 @@ two  2001
                     index=['one', 'two', 'three', 'four', 'five', 'six'])
   print('----------------------- 转置前 ----------------------')
   print(df)
-  print('\n')
   print('----------------------- 转置后 ----------------------')
   print(df.T)
   
@@ -757,7 +757,6 @@ two  2001
   four   2001    Nevada  2.4
   five   2002    Nevada  2.9
   six    2003    Nevada  3.2
-
 
   ----------------------- 转置后 ----------------------
               one   two three    four    five     six
