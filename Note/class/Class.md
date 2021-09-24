@@ -104,4 +104,125 @@ Hello my name is Bill
 
 ### 3.2 `__init__()` 方法
 
-该方法会在类实例化时自动调用
+该方法会在类实例化时自动调用，可以将值赋给对象属性
+
+```py
+# 输入
+class f:
+    def __init__(self, a, b):
+        self.m = a
+        self.n = b
+
+    def sum(self):
+        return self.m + self.n
+
+
+if __name__ == '__main__':
+    p = f(3, 5)
+    res = p.sum()
+    print(res)
+
+# 输出
+8
+```
+
+## 4. 动态增加属性和方法
+
+当对象或类的属性在需要增加，且不方便修改源码的时候，可以动态增加对象或类的属性和方法  
+
+### 4.1 动态给对象增加属性和方法
+
+动态给对象增加属性和方法时，只对当前对象生效，其他对象是不会受到影响的  
+
+- 增加属性  
+
+语法：`obj.新属性名 = 新属性名的初始值`  
+
+```py
+# 输入
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+if __name__ == '__main__':
+    s1 = Student('Bill', 22)
+    s2 = Student('Mary', 24)
+    s1.score = 96
+    print(s1.score)
+    print(s2.score)
+
+# 输出
+    print(s2.score)
+AttributeError: 'Student' object has no attribute 'score'
+96
+```
+
+- 增加方法  
+
+1. 给对象增加方法不可以像增加属性一样直接定义并初始化，要通过 `types.MethodType` 方法给对象绑定新方法  
+2. 添加的方法在函数定义时必须要传入 `self` 参数
+
+```py
+import types
+
+[定义函数]
+
+obj.新方法名 = types.MethodType(函数名，obj)
+```
+
+```py
+# 输入
+import types
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+def func(self, gain):
+    self.score = gain
+    print('成绩为：', self.score)
+
+
+if __name__ == '__main__':
+    s1 = Student('Bill', 22)
+    s2 = Student('Mary', 24)
+    s1.func = types.MethodType(func, s1)
+    s1.func(96)
+
+# 输出
+成绩为： 96
+```
+
+### 4.2 动态给类增加属性和方法
+
+给类增加的属性和方法将会影响该类实例化的所有对象  
+
+- 增加属性  
+
+语法：`类名.新属性名 = 新属性名的初始值`  
+
+```py
+# 输入
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+if __name__ == '__main__':
+    s1 = Student('Bill', 22)
+    s2 = Student('Mary', 24)
+    Student.score = 96
+    print('{}的成绩为：{}'.format(s1.name, s1.score))
+    print('{}的成绩为：{}'.format(s2.name, s2.score))
+
+# 输出
+Bill的成绩为：96
+Mary的成绩为：96
+```
+
+- 增加方法  
