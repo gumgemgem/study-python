@@ -765,6 +765,47 @@ two  2001
   pop         1.5   1.7   3.6     2.4     2.9     3.2
   ```
 
+### 5.6 dtypes
+
+- 描述  
+返回 DataFrame 每一列的数据类型
+
+- 语法  
+```py
+DataFrame.dtypes
+```
+
+返回值：返回 Series，索引是原始 DataFrame 的列  
+
+- 实例  
+```py
+# 输入
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({'key1': ['a', 'c', 'b', 'b', 'a'],
+                   'key2': ['one', 'two', 'one', 'two', 'one'],
+                   'data1': np.random.randn(5),
+                   'data2': np.random.randn(5)})
+print(df)
+print('***************************')
+print(df.dtypes)
+
+# 输出
+  key1 key2     data1     data2
+0    a  one -0.193649  0.119841
+1    c  two -0.297007  0.887823
+2    b  one -1.163381  0.376954
+3    b  two -1.232862 -0.581172
+4    a  one  1.437366 -1.574250
+***************************
+key1      object
+key2      object
+data1    float64
+data2    float64
+dtype: object
+```
+
 ## 6、DataFrame 的常用方法
 
 ### 6.1 head()
@@ -826,3 +867,5 @@ two  2001
 
   参数说明：  
   n -- 整数（**默认**：5）  
+
+### 6.3 display()
