@@ -67,7 +67,7 @@ class Test:
 if __name__ == '__main__':
     t = Test()
     t.prt()
-    t.prt()
+    print(t.a)
 
 # 输出
 <__main__.Test object at 0x0000018FFBE43E50>
