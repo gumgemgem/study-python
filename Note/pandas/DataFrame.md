@@ -332,6 +332,7 @@ print(df2)
 - 通过类似字典标记的方式`DataFrame[column]`或属性的方式`DataFrame.column`，可以提取 DataFrame 的某一列为一个 Series  
 - `DataFrame[column]`适用于任何列名，`DataFrame.column`只适用于列名是一个合理的 Python 变量名时  
 - 通过`DataFrame[[column1, column2, ...]]`的方式可以得到一组列  
+- 当只提取一列但仍希望保留 DataFrame 的格式而非 Series 的格式，采取 `DataFrame[[column]]` 的形式  
 - 此方法不可以进行切片操作，即不存在`DataFrame[column1: column2]`的语法  
 
 ```py
