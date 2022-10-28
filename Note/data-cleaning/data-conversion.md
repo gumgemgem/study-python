@@ -133,7 +133,7 @@ dtype: bool
 |参数|说明|
 |---|---|
 |subset|column label or sequence of labels, optional<br>指定需要判断重复数据的字段或字段的序列，**可选参数**（默认**所有列**）|
-|keep|{'fisrt', 'last', False}, default 'fisrt'<br>指定哪些重复行需要标记（已知非重复行默认标记为 False）<br>'fisrt' -- 重复项都标记为 True，除了第一次出现的行（**默认**）<br>'last' -- 重复项都标记为 True，除了最后一次出现的行<br>False -- 所有重复项都标记为 True|
+|keep|{'fisrt', 'last', False}, default 'fisrt'<br>指定哪些重复行需要被保留<br>'fisrt' -- 重复项都被删除，除了第一次出现的行（**默认**）<br>'last' -- 重复项都被删除，除了最后一次出现的行<br>False -- 所有重复项都被删除|
 |inplace|bool, default False<br>是否原地修改数据，否则返回一个副本（默认**False**）|
 |ignore_index|bool, default False<br>是否重新排列返回结果的索引（默认**False**）|
 
