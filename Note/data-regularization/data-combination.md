@@ -34,3 +34,14 @@ pandas.merge(left, right, how='inner', on=None, left_on=None, right_on=None, lef
 
 [1. 参考官网示例](https://pandas.pydata.org/docs/reference/api/pandas.merge.html?highlight=pandas%20merge#pandas.merge)  
 [2. 参考其它示例](https://blog.csdn.net/brucewong0516/article/details/82707492)
+
+## 2. join()
+
+- 描述  
+
+`join()`
+
+- 语法  
+
+
+- 实例  
